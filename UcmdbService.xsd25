@@ -1,0 +1,13 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:types="http://schemas.hp.com/ucmdb/ui/1/types" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://schemas.hp.com/ucmdb/ui/1/types">
+<xs:complexType name="ClassNameAndIcon">
+<xs:sequence>
+<xs:element name="className" type="xs:string"/>
+<xs:element name="iconRelativePath" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ClassNameAndIcons">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="classNameAndIcon" type="types:ClassNameAndIcon"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

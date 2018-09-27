@@ -1,0 +1,43 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:historyparams="http://schemas.hp.com/ucmdb/1/params/history" xmlns:historytypes="http://schemas.hp.com/ucmdb/1/types/history" xmlns:types="http://schemas.hp.com/ucmdb/1/types" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://schemas.hp.com/ucmdb/1/params/history">
+<xs:import namespace="http://schemas.hp.com/ucmdb/1/types" schemaLocation="UcmdbService.xsd11"/>
+<xs:import namespace="http://schemas.hp.com/ucmdb/1/types/history" schemaLocation="UcmdbService.xsd19"/>
+<xs:complexType name="getChangedCIs">
+<xs:sequence>
+<xs:element name="cmdbContext" type="types:CmdbContext"/>
+<xs:element name="ids" type="types:IDs">
+<xs:annotation>
+<xs:documentation>
+					The collection of UCMDB IDs specifying the base CIs to check  
+				</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="fromDate" type="xs:dateTime">
+<xs:annotation>
+<xs:documentation>
+					Beginning of period in which to check if CIs changed
+				</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="toDate" type="xs:dateTime">
+<xs:annotation>
+<xs:documentation>
+					The end of the period to check
+				</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getChangedCIs" type="historyparams:getChangedCIs">
+<xs:annotation>
+<xs:documentation>
+			Returns the change data for all CIs related to the specified CIs 
+		</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="getChangedCIsResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="changeDataInfo" type="historytypes:ChangedDataInfo"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getChangedCIsResponse" type="historyparams:getChangedCIsResponse"/>
+</xs:schema>

@@ -1,0 +1,36 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:types="http://schemas.hp.com/ucmdb/discovery/1/types" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://schemas.hp.com/ucmdb/discovery/1/types">
+<xs:complexType name="IPList">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="IP" type="types:IP"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="IP">
+<xs:sequence>
+<xs:element name="address" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="IPRange">
+<xs:sequence>
+<xs:element name="Start" type="types:IP"/>
+<xs:element name="End" type="types:IP"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Scope">
+<xs:sequence>
+<xs:element name="Exclude">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="Ranges" type="types:IPRange"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="Include">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="Ranges" type="types:IPRange"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

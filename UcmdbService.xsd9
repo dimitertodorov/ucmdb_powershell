@@ -1,0 +1,1166 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:types="http://schemas.hp.com/ucmdb/1/types" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://schemas.hp.com/ucmdb/1/types">
+<xs:annotation>
+<xs:documentation>
+            The high-level types used throughout the UCMDB.
+        </xs:documentation>
+</xs:annotation>
+<xs:complexType name="CmdbContext">
+<xs:sequence>
+<xs:element name="callerApplication" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+                        The invoking application
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="CI">
+<xs:sequence>
+<xs:element name="ID" type="types:ID">
+<xs:annotation>
+<xs:documentation>
+                        The unique ID of the instance
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="type" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+                        The class name
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element minOccurs="0" name="props" type="types:CIProperties">
+<xs:annotation>
+<xs:documentation>
+                        The collection of properties and values
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="CIs">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" name="CI" type="types:CI">
+<xs:annotation>
+<xs:documentation>
+                        A configuration element
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ShallowCI">
+<xs:sequence>
+<xs:element name="ID" type="types:ID">
+<xs:annotation>
+<xs:documentation>
+                        The unique ID of the instance
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="type" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+                        The class name
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ShallowCIs">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" name="shallowCI" type="types:ShallowCI">
+<xs:annotation>
+<xs:documentation>
+                        The ID and class of a Configuration Item (CI), with no property specifications
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Relation">
+<xs:sequence>
+<xs:element name="ID" type="types:ID">
+<xs:annotation>
+<xs:documentation>
+                        The unique ID of the Relation
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="type" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+                        The nature of the relation between the CI elements. For example, Contains, Uses, and so on.
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="end1ID" type="types:ID">
+<xs:annotation>
+<xs:documentation>
+                        The CI.ID of the base of the link
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="end2ID" type="types:ID">
+<xs:annotation>
+<xs:documentation>
+                        The CI.ID of the target of the link
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element minOccurs="0" name="props" type="types:CIProperties">
+<xs:annotation>
+<xs:documentation>
+                        The properties of the link
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Relations">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" name="relation" type="types:Relation">
+<xs:annotation>
+<xs:documentation>
+                        A link between two configuration elements
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ShallowRelation">
+<xs:sequence>
+<xs:element name="ID" type="types:ID">
+<xs:annotation>
+<xs:documentation>
+                        The unique ID of the Relation
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="type" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+                        The nature of the relation between the CI elements. For example, Contains, Uses, and so on.
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="end1ID" type="types:ID">
+<xs:annotation>
+<xs:documentation>
+                        The CI.ID of the base of the link
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="end2ID" type="types:ID">
+<xs:annotation>
+<xs:documentation>
+                        The CI.ID of the target of the link
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ShallowRelations">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" name="shallowRelation" type="types:ShallowRelation">
+<xs:annotation>
+<xs:documentation>
+                        The link ID, link type, and the two end-points
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="IDs">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" name="ID" type="types:ID"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ID">
+<xs:simpleContent>
+<xs:extension base="xs:string">
+<xs:attribute default="false" name="temp" type="xs:boolean" use="optional">
+<xs:annotation>
+<xs:documentation>
+                            If true, this is a temporary ID. If false, it is the instance's ID in the UCMDB.
+                        </xs:documentation>
+</xs:annotation>
+</xs:attribute>
+</xs:extension>
+</xs:simpleContent>
+</xs:complexType>
+<xs:complexType name="CIProperties">
+<xs:sequence>
+<xs:element minOccurs="0" name="dateProps" type="types:DateProps"/>
+<xs:element minOccurs="0" name="doubleProps" type="types:DoubleProps"/>
+<xs:element minOccurs="0" name="floatProps" type="types:FloatProps"/>
+<xs:element minOccurs="0" name="intListProps" type="types:IntListProps"/>
+<xs:element minOccurs="0" name="intProps" type="types:IntProps"/>
+<xs:element minOccurs="0" name="strProps" type="types:StrProps"/>
+<xs:element minOccurs="0" name="strListProps" type="types:StrListProps"/>
+<xs:element minOccurs="0" name="longProps" type="types:LongProps"/>
+<xs:element minOccurs="0" name="bytesProps" type="types:BytesProps"/>
+<xs:element minOccurs="0" name="xmlProps" type="types:XmlProps"/>
+<xs:element minOccurs="0" name="booleanProps" type="types:BooleanProps"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType abstract="true" name="CIProp">
+<xs:sequence>
+<xs:element name="name" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+                        The property's name
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="BooleanProp">
+<xs:complexContent>
+<xs:extension base="types:CIProp">
+<xs:sequence>
+<xs:element minOccurs="0" name="value" nillable="true" type="xs:boolean">
+<xs:annotation>
+<xs:documentation>
+                                The condition value to be compared to the CI or Relation's property value
+                            </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="BytesProp">
+<xs:complexContent>
+<xs:extension base="types:CIProp">
+<xs:sequence>
+<xs:element minOccurs="0" name="value" nillable="true" type="xs:base64Binary">
+<xs:annotation>
+<xs:documentation>
+                                The condition value to be compared to the CI or Relation's property value
+                            </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="DateProp">
+<xs:complexContent>
+<xs:extension base="types:CIProp">
+<xs:sequence>
+<xs:element minOccurs="0" name="value" nillable="true" type="xs:dateTime">
+<xs:annotation>
+<xs:documentation>
+                                The condition value to be compared to the CI or Relation's property value
+                            </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="DoubleProp">
+<xs:complexContent>
+<xs:extension base="types:CIProp">
+<xs:sequence>
+<xs:element minOccurs="0" name="value" nillable="true" type="xs:double">
+<xs:annotation>
+<xs:documentation>
+                                The condition value to be compared to the CI or Relation's property value
+                            </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="FloatProp">
+<xs:complexContent>
+<xs:extension base="types:CIProp">
+<xs:sequence>
+<xs:element minOccurs="0" name="value" nillable="true" type="xs:float">
+<xs:annotation>
+<xs:documentation>
+                                The condition value to be compared to the CI or Relation's property value
+                            </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="IntListProp">
+<xs:complexContent>
+<xs:extension base="types:CIProp">
+<xs:sequence>
+<xs:element minOccurs="0" name="intValues" nillable="true" type="types:intList">
+<xs:annotation>
+<xs:documentation>
+                                The condition's list of values to be compared to the CI or Relation's property value
+                            </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="IntProp">
+<xs:complexContent>
+<xs:extension base="types:CIProp">
+<xs:sequence>
+<xs:element minOccurs="0" name="value" nillable="true" type="xs:integer">
+<xs:annotation>
+<xs:documentation>
+                                The condition value to be compared to the CI or Relation's property value
+                            </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="LongProp">
+<xs:complexContent>
+<xs:extension base="types:CIProp">
+<xs:sequence>
+<xs:element minOccurs="0" name="value" nillable="true" type="xs:long">
+<xs:annotation>
+<xs:documentation>
+                                The condition value to be compared to the CI or Relation's property value
+                            </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="StrListProp">
+<xs:complexContent>
+<xs:extension base="types:CIProp">
+<xs:sequence>
+<xs:element minOccurs="0" name="strValues" nillable="true" type="types:strList">
+<xs:annotation>
+<xs:documentation>
+                                The list of condition values to be compared to the CI or Relation's property value
+                            </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="StrProp">
+<xs:complexContent>
+<xs:extension base="types:CIProp">
+<xs:sequence>
+<xs:element minOccurs="0" name="value" nillable="true" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+                                The condition value to be compared to the CI or Relation's property value
+                            </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="XmlProp">
+<xs:complexContent>
+<xs:extension base="types:CIProp">
+<xs:sequence>
+<xs:element minOccurs="0" name="value" nillable="true" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+                                The condition value to be compared to the CI or Relation's property value
+                            </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="BooleanProps">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="booleanProp" type="types:BooleanProp"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="DateProps">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="dateProp" type="types:DateProp"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="IntProps">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="intProp" type="types:IntProp"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="LongProps">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="longProp" type="types:LongProp"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="FloatProps">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="floatProp" type="types:FloatProp"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="IntListProps">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="intListProp" type="types:IntListProp"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="DoubleProps">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="doubleProp" type="types:DoubleProp"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="BytesProps">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="bytesProp" type="types:BytesProp"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="StrProps">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="strProp" type="types:StrProp"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="StrListProps">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="strListProp" type="types:StrListProp"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="XmlProps">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="xmlProp" type="types:XmlProp"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Parameters">
+<xs:sequence>
+<xs:element name="dateParams" type="types:DateParams"/>
+<xs:element name="doubleParams" type="types:DoubleParams"/>
+<xs:element name="floatParams" type="types:FloatParams"/>
+<xs:element name="intListParams" type="types:IntListParams"/>
+<xs:element name="intParams" type="types:IntParams"/>
+<xs:element name="strParams" type="types:StrParams"/>
+<xs:element name="strListParams" type="types:StrListParams"/>
+<xs:element name="longParams" type="types:LongParams"/>
+<xs:element name="bytesParams" type="types:BytesParams"/>
+<xs:element name="xmlParams" type="types:XmlParams"/>
+<xs:element name="booleanParams" type="types:BooleanParams"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="BooleanParams">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="booleanParam" type="types:BooleanProp"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="DateParams">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="dateParam" type="types:DateProp"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="IntParams">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="intParam" type="types:IntProp"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="LongParams">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="longParam" type="types:LongProp"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="FloatParams">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="floatParam" type="types:FloatProp"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="IntListParams">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="intListParam" type="types:IntListProp"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="DoubleParams">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="doubleParam" type="types:DoubleProp"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="BytesParams">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="bytesParam" type="types:BytesProp"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="StrParams">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="strParam" type="types:StrProp"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="StrListParams">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="strListParam" type="types:StrListProp"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="XmlParams">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="xmlParam" type="types:XmlProp"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Topology">
+<xs:sequence>
+<xs:element name="CIs" type="types:CIs">
+<xs:annotation>
+<xs:documentation>
+                        Collections of configuration items
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element minOccurs="0" name="relations" type="types:Relations">
+<xs:annotation>
+<xs:documentation>
+                        Collections of Relation items
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="TopologyMap">
+<xs:sequence>
+<xs:element minOccurs="0" name="CINodes" type="types:CINodes">
+<xs:annotation>
+<xs:documentation>
+                        Collections of CI Nodes
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element minOccurs="0" name="relationNodes" type="types:RelationNodes">
+<xs:annotation>
+<xs:documentation>
+                        Collections of Relation Nodes
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="CINode">
+<xs:sequence>
+<xs:element name="label" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+                        The tag of a collection of related configuration items
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="CIs" type="types:CIs">
+<xs:annotation>
+<xs:documentation>
+                        A collection of related CI items
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="CINodes">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="CINode" type="types:CINode">
+<xs:annotation>
+<xs:documentation>
+                        A Map data unit, consisting of a node label and the collection of configuration items to which
+                        the label applies.
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="RelationNode">
+<xs:sequence>
+<xs:element name="label" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+                        The tag of a collection of related relations
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="relations" type="types:Relations">
+<xs:annotation>
+<xs:documentation>
+                        A collection of related relations
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="RelationNodes">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="relationNode" type="types:RelationNode">
+<xs:annotation>
+<xs:documentation>
+                        A Map data unit, consisting of a node label and the collection of relations to which the label
+                        applies.
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ParameterizedNode">
+<xs:sequence>
+<xs:element name="parameters" type="types:CIProperties">
+<xs:annotation>
+<xs:documentation>
+                        The property names and values to be passed to the parameterized query
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="nodeLabel" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+                        The tag of a collection of related items
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ParameterizedNodes">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" name="parameterizedNode" type="types:ParameterizedNode">
+<xs:annotation>
+<xs:documentation>
+                        A query node and its parameterized properties, consisting of a label and a collection of
+                        properties to which the label applies
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ParameterizedCondition">
+<xs:sequence>
+<xs:element name="parameters" type="types:Conditions">
+<xs:annotation>
+<xs:documentation>
+                        Filters for the objects to be returned from a query. The values are provided when the query is
+                        called.
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="nodeLabel" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+                        The query node label is used in the result as the map node label
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ParameterizedConditions">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" name="node" type="types:ParameterizedCondition">
+<xs:annotation>
+<xs:documentation>
+                        A query node, its parameterized properties, and their values and operators.
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType abstract="true" name="Condition"/>
+<xs:complexType name="Conditions">
+<xs:sequence>
+<xs:element minOccurs="0" name="booleanConditions" type="types:BooleanConditions"/>
+<xs:element minOccurs="0" name="dateConditions" type="types:DateConditions"/>
+<xs:element minOccurs="0" name="doubleConditions" type="types:DoubleConditions"/>
+<xs:element minOccurs="0" name="floatConditions" type="types:FloatConditions"/>
+<xs:element minOccurs="0" name="intConditions" type="types:IntConditions"/>
+<xs:element minOccurs="0" name="intListConditions" type="types:IntListConditions"/>
+<xs:element minOccurs="0" name="strConditions" type="types:StrConditions"/>
+<xs:element minOccurs="0" name="strListConditions" type="types:StrListConditions"/>
+<xs:element minOccurs="0" name="xmlConditions" type="types:XmlConditions"/>
+<xs:element minOccurs="0" name="longConditions" type="types:LongConditions"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="IntCondition">
+<xs:complexContent>
+<xs:extension base="types:Condition">
+<xs:sequence>
+<xs:element name="condition" type="types:IntProp"/>
+<xs:element name="intOperator">
+<xs:annotation>
+<xs:documentation>
+                                Integer comparison operators
+                            </xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value="Equal"/>
+<xs:enumeration value="NotEqual"/>
+<xs:enumeration value="Greater"/>
+<xs:enumeration value="GreaterEqual"/>
+<xs:enumeration value="Less"/>
+<xs:enumeration value="LessEqual"/>
+<xs:enumeration value="In"/>
+<xs:enumeration value="IsNull"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="IntListCondition">
+<xs:complexContent>
+<xs:extension base="types:Condition">
+<xs:sequence>
+<xs:element name="condition" type="types:IntListProp"/>
+<xs:element name="intListOperator">
+<xs:annotation>
+<xs:documentation>
+                                Is in list or is null
+                            </xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value="InList"/>
+<xs:enumeration value="IsNull"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="BooleanCondition">
+<xs:complexContent>
+<xs:extension base="types:Condition">
+<xs:sequence>
+<xs:element name="condition" type="types:BooleanProp"/>
+<xs:element name="booleanOperator">
+<xs:annotation>
+<xs:documentation>
+                                Equal or not equal
+                            </xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value="Equal"/>
+<xs:enumeration value="NotEqual"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="StrCondition">
+<xs:complexContent>
+<xs:extension base="types:Condition">
+<xs:sequence>
+<xs:element name="condition" type="types:StrProp"/>
+<xs:element name="strOperator">
+<xs:annotation>
+<xs:documentation>
+                                Comparison operators
+                            </xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value="Equal"/>
+<xs:enumeration value="NotEqual"/>
+<xs:enumeration value="Like"/>
+<xs:enumeration value="LikeIgnoreCase"/>
+<xs:enumeration value="In"/>
+<xs:enumeration value="IsNull"/>
+<xs:enumeration value="EqualIgnoreCase"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="StrListCondition">
+<xs:complexContent>
+<xs:extension base="types:Condition">
+<xs:sequence>
+<xs:element name="condition" type="types:StrProp"/>
+<xs:element name="strListOperator">
+<xs:annotation>
+<xs:documentation>
+                                Is in list or is null
+                            </xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value="InList"/>
+<xs:enumeration value="IsNull"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="FloatCondition">
+<xs:complexContent>
+<xs:extension base="types:Condition">
+<xs:sequence>
+<xs:element name="condition" type="types:FloatProp"/>
+<xs:element name="floatOperator">
+<xs:annotation>
+<xs:documentation>
+                                Comparison, In, and IsNull operators
+                            </xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value="Equal"/>
+<xs:enumeration value="NotEqual"/>
+<xs:enumeration value="Greater"/>
+<xs:enumeration value="GreaterEqual"/>
+<xs:enumeration value="Less"/>
+<xs:enumeration value="LessEqual"/>
+<xs:enumeration value="In"/>
+<xs:enumeration value="IsNull"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="LongCondition">
+<xs:complexContent>
+<xs:extension base="types:Condition">
+<xs:sequence>
+<xs:element name="condition" type="types:LongProp"/>
+<xs:element name="longOperator">
+<xs:annotation>
+<xs:documentation>
+                                Comparison, In, and IsNull operators
+                            </xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value="Equal"/>
+<xs:enumeration value="NotEqual"/>
+<xs:enumeration value="Greater"/>
+<xs:enumeration value="GreaterEqual"/>
+<xs:enumeration value="Less"/>
+<xs:enumeration value="LessEqual"/>
+<xs:enumeration value="In"/>
+<xs:enumeration value="IsNull"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="DoubleCondition">
+<xs:complexContent>
+<xs:extension base="types:Condition">
+<xs:sequence>
+<xs:element name="condition" type="types:DoubleProp"/>
+<xs:element name="doubleOperator">
+<xs:annotation>
+<xs:documentation>
+                                Comparison, In, and IsNull operators
+                            </xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value="Equal"/>
+<xs:enumeration value="NotEqual"/>
+<xs:enumeration value="Greater"/>
+<xs:enumeration value="GreaterEqual"/>
+<xs:enumeration value="Less"/>
+<xs:enumeration value="LessEqual"/>
+<xs:enumeration value="In"/>
+<xs:enumeration value="IsNull"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="DateCondition">
+<xs:complexContent>
+<xs:extension base="types:Condition">
+<xs:sequence>
+<xs:element name="condition" type="types:DateProp"/>
+<xs:element name="dateOperator">
+<xs:annotation>
+<xs:documentation>
+                                Comparison, Changed, and Unchanged operators
+                            </xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value="Equal"/>
+<xs:enumeration value="NotEqual"/>
+<xs:enumeration value="Greater"/>
+<xs:enumeration value="GreaterEqual"/>
+<xs:enumeration value="Less"/>
+<xs:enumeration value="LessEqual"/>
+<xs:enumeration value="ChangedDuring"/>
+<xs:enumeration value="UnchangedDuring"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="XmlCondition">
+<xs:complexContent>
+<xs:extension base="types:Condition">
+<xs:sequence>
+<xs:element name="condition" type="types:XmlProp"/>
+<xs:element name="xmlOperator">
+<xs:annotation>
+<xs:documentation>
+                                Does property exist
+                            </xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value="IsNull">
+<xs:annotation>
+<xs:documentation>
+                                            True if the property is empty
+                                        </xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="IntConditions">
+<xs:complexContent>
+<xs:extension base="types:Condition">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="intCondition" type="types:IntCondition"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="IntListConditions">
+<xs:complexContent>
+<xs:extension base="types:Condition">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="intListCondition" type="types:IntListCondition"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="BooleanConditions">
+<xs:complexContent>
+<xs:extension base="types:Condition">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="booleanCondition" type="types:BooleanCondition"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="StrConditions">
+<xs:complexContent>
+<xs:extension base="types:Condition">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="strCondition" type="types:StrCondition"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="StrListConditions">
+<xs:complexContent>
+<xs:extension base="types:Condition">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="strListCondition" type="types:StrListCondition"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="FloatConditions">
+<xs:complexContent>
+<xs:extension base="types:Condition">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="floatCondition" type="types:FloatCondition"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="LongConditions">
+<xs:complexContent>
+<xs:extension base="types:Condition">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="longCondition" type="types:LongCondition"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="DoubleConditions">
+<xs:complexContent>
+<xs:extension base="types:Condition">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="doubleCondition" type="types:DoubleCondition"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="DateConditions">
+<xs:complexContent>
+<xs:extension base="types:Condition">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="dateCondition" type="types:DateCondition"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="XmlConditions">
+<xs:complexContent>
+<xs:extension base="types:Condition">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="xmlCondition" type="types:XmlCondition"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="ResComments">
+<xs:sequence>
+<xs:element default="No Comment" name="comments" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ChunkInfo">
+<xs:sequence>
+<xs:element name="numberOfChunks" type="xs:int">
+<xs:annotation>
+<xs:documentation>
+                        How many chunks are there to be retrieved by the client
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="chunksKey" type="types:ChunkKey">
+<xs:annotation>
+<xs:documentation>
+                        The ID of the information stored on the server
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ChunkRequest">
+<xs:sequence>
+<xs:element name="chunkNumber" type="xs:int">
+<xs:annotation>
+<xs:documentation>
+                        Which chunk to bring, from 1 to the number of chunks
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="chunkInfo" type="types:ChunkInfo">
+<xs:annotation>
+<xs:documentation>
+                        The ChunkInfo data returned by the server in response to the query identifies the data from
+                        which the chunk is to be fetched
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ChunkKey">
+<xs:sequence>
+<xs:element name="key1" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+                        A string generated by the server
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="key2" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+                        A string generated by the server
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ChunkRequest" type="types:ChunkRequest"/>
+<xs:complexType name="ShallowCompoundRelation">
+<xs:sequence>
+<xs:element name="ID" type="types:ID">
+<xs:annotation>
+<xs:documentation>
+                        The unique ID of the Relation
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="end1ID" type="types:ID">
+<xs:annotation>
+<xs:documentation>
+                        The CI.ID of the base of the link
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="end2ID" type="types:ID">
+<xs:annotation>
+<xs:documentation>
+                        The CI.ID of the target of the link
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ShallowCompoundRelations">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" name="shallowCompoundRelations" type="types:ShallowCompoundRelation">
+<xs:annotation>
+<xs:documentation>
+                        A link between two configuration items with no specification of the type of link or of any
+                        properties
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ShallowTopology">
+<xs:sequence>
+<xs:element name="CIs" type="types:ShallowCIs">
+<xs:annotation>
+<xs:documentation>
+                        A collection of configuration items' IDs and classes, with no property specifications
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element minOccurs="0" name="relations" type="types:ShallowRelations">
+<xs:annotation>
+<xs:documentation>
+                        A collection of links, each between two configuration elements, with no link properties
+                        specified
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element minOccurs="0" name="compoundRelations" type="types:ShallowCompoundRelations">
+<xs:annotation>
+<xs:documentation>
+                        A collection of links. each between two configuration items, with no specification of the type
+                        of link or of any properties
+                    </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="intList">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="intValue" type="xs:integer"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="strList">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="strValue" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

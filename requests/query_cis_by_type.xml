@@ -1,0 +1,19 @@
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:quer="http://schemas.hp.com/ucmdb/1/params/query" xmlns:typ="http://schemas.hp.com/ucmdb/1/types" xmlns:prop="http://schemas.hp.com/ucmdb/1/types/props">
+   <soap:Header/>
+   <soap:Body>
+      <quer:getCIsByType>
+         <quer:cmdbContext>
+            <typ:callerApplication>Dimiter</typ:callerApplication>
+         </quer:cmdbContext>
+         <quer:type>node</quer:type>
+         <quer:properties>
+            <!--Optional:-->
+            <prop:propertiesList>
+               <!--1 or more repetitions:-->
+               <prop:propertyName>name</prop:propertyName>
+               <prop:propertyName>monitored_by</prop:propertyName>
+            </prop:propertiesList>
+		</quer:properties>
+      </quer:getCIsByType>
+   </soap:Body>
+</soap:Envelope>

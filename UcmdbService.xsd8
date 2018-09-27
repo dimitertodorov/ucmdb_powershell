@@ -1,0 +1,110 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:impactparams="http://schemas.hp.com/ucmdb/1/params/impact" xmlns:impacttypes="http://schemas.hp.com/ucmdb/1/types/impact" xmlns:types="http://schemas.hp.com/ucmdb/1/types" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://schemas.hp.com/ucmdb/1/params/impact">
+<xs:annotation>
+<xs:documentation>
+		Methods and return types for impact analysis
+		</xs:documentation>
+</xs:annotation>
+<xs:import namespace="http://schemas.hp.com/ucmdb/1/types" schemaLocation="UcmdbService.xsd11"/>
+<xs:import namespace="http://schemas.hp.com/ucmdb/1/types/impact" schemaLocation="UcmdbService.xsd10"/>
+<xs:complexType abstract="true" name="impactRequest">
+<xs:sequence>
+<xs:element name="impactCategory" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+					The type of impact action	
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="IDs" type="types:IDs">
+<xs:annotation>
+<xs:documentation>
+					The IDs of the configuration items that are the root cause	
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element ref="impacttypes:ImpactRuleNames">
+<xs:annotation>
+<xs:documentation>
+					The impact rules for which to retrieve the result
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="severity" type="xs:int">
+<xs:annotation>
+<xs:documentation>
+					The impact level	
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType abstract="true" name="impactResponse">
+<xs:sequence>
+<xs:element name="impactTopology" type="types:Topology"/>
+<xs:element name="identifier" type="impacttypes:Identifier"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="calculateImpact">
+<xs:complexContent>
+<xs:extension base="impactparams:impactRequest">
+<xs:sequence>
+<xs:element name="cmdbContext" type="types:CmdbContext"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="calculateImpact" type="impactparams:calculateImpact"/>
+<xs:complexType name="calculateImpactResponse">
+<xs:complexContent>
+<xs:extension base="impactparams:impactResponse"/>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="calculateImpactResponse" type="impactparams:calculateImpactResponse"/>
+<xs:complexType name="getImpactRulesByNamePrefix">
+<xs:sequence>
+<xs:element name="cmdbContext" type="types:CmdbContext"/>
+<xs:element maxOccurs="unbounded" name="ruleNamePrefixFilter" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getImpactRulesByNamePrefix" type="impactparams:getImpactRulesByNamePrefix"/>
+<xs:complexType name="getImpactRulesByNamePrefixResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="impactRules" type="impacttypes:ImpactRules"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getImpactRulesByNamePrefixResponse" type="impactparams:getImpactRulesByNamePrefixResponse"/>
+<xs:complexType name="getImpactPath">
+<xs:sequence>
+<xs:element name="relation" type="types:ShallowRelation"/>
+<xs:element name="identifier" type="impacttypes:Identifier"/>
+<xs:element name="cmdbContext" type="types:CmdbContext"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getImpactPath" type="impactparams:getImpactPath"/>
+<xs:complexType name="getImpactPathResponse">
+<xs:sequence>
+<xs:element ref="impacttypes:ImpactPathTopology"/>
+<xs:element name="comments" type="types:ResComments"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getImpactPathResponse" type="impactparams:getImpactPathResponse"/>
+<xs:complexType name="getImpactRulesByGroupName">
+<xs:sequence>
+<xs:element name="cmdbContext" type="types:CmdbContext"/>
+<xs:element maxOccurs="unbounded" name="ruleGroupNameFilter" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+					The name of a group or a substring of the name. Wildcards are not allowed when using a substring.
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getImpactRulesByGroupName" type="impactparams:getImpactRulesByGroupName"/>
+<xs:complexType name="getImpactRulesByGroupNameResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="impactRules" type="impacttypes:ImpactRules"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getImpactRulesByGroupNameResponse" type="impactparams:getImpactRulesByGroupNameResponse"/>
+</xs:schema>

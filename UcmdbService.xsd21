@@ -1,0 +1,497 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:discoverytypes="http://schemas.hp.com/ucmdb/discovery/1/types" xmlns:params="http://schemas.hp.com/ucmdb/discovery/1/params" xmlns:ucmdbtypes="http://schemas.hp.com/ucmdb/1/types" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://schemas.hp.com/ucmdb/discovery/1/params">
+<xs:import namespace="http://schemas.hp.com/ucmdb/1/types" schemaLocation="UcmdbService.xsd11"/>
+<xs:import namespace="http://schemas.hp.com/ucmdb/discovery/1/types" schemaLocation="UcmdbService.xsd23"/>
+<xs:element name="isJobActiveRequest" type="params:isJobActiveRequest">
+<xs:annotation>
+<xs:documentation>Job Name</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="isJobActiveRequest">
+<xs:sequence>
+<xs:element name="JobName" type="xs:string"/>
+<xs:element name="CmdbContext" type="ucmdbtypes:CmdbContext"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="isJobActiveResponse" type="params:isJobActiveResponse">
+<xs:annotation>
+<xs:documentation>JobState</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="isJobActiveResponse">
+<xs:sequence>
+<xs:element name="JobState" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getDiscoveryJobsNamesRequest" type="params:getDiscoveryJobsNamesRequest"/>
+<xs:complexType name="getDiscoveryJobsNamesRequest">
+<xs:sequence>
+<xs:element name="CmdbContext" type="ucmdbtypes:CmdbContext"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getDiscoveryJobsNamesResponse" type="params:getDiscoveryJobsNamesResponse">
+<xs:annotation>
+<xs:documentation>All Jobs Names</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="getDiscoveryJobsNamesResponse">
+<xs:sequence>
+<xs:element name="strList" type="ucmdbtypes:strList"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="activateJobRequest" type="params:activateJobRequest">
+<xs:annotation>
+<xs:documentation>Job Name</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="activateJobRequest">
+<xs:sequence>
+<xs:element name="JobName" type="xs:string"/>
+<xs:element name="CmdbContext" type="ucmdbtypes:CmdbContext"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="deactivateJobRequest" type="params:deactivateJobRequest">
+<xs:annotation>
+<xs:documentation>Job Name</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="deactivateJobRequest">
+<xs:sequence>
+<xs:element name="JobName" type="xs:string"/>
+<xs:element name="CmdbContext" type="ucmdbtypes:CmdbContext"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="addTriggerTQLRequest" type="params:addTriggerTQLRequest">
+<xs:annotation>
+<xs:documentation>Job Name, Tql Name</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="addTriggerTQLRequest">
+<xs:sequence>
+<xs:element name="JobName" type="xs:string"/>
+<xs:element name="TqlName" type="xs:string"/>
+<xs:element name="CmdbContext" type="ucmdbtypes:CmdbContext"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="removeTriggerTQLRequest" type="params:removeTriggerTQLRequest">
+<xs:annotation>
+<xs:documentation>Job Name, Tql Name</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="removeTriggerTQLRequest">
+<xs:sequence>
+<xs:element name="JobName" type="xs:string"/>
+<xs:element name="TqlName" type="xs:string"/>
+<xs:element name="CmdbContext" type="ucmdbtypes:CmdbContext"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="disableTriggerTQLRequest" type="params:disableTriggerTQLRequest">
+<xs:annotation>
+<xs:documentation>Job Name, Tql Name</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="disableTriggerTQLRequest">
+<xs:sequence>
+<xs:element name="JobName" type="xs:string"/>
+<xs:element name="TqlName" type="xs:string"/>
+<xs:element name="CmdbContext" type="ucmdbtypes:CmdbContext"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="setTriggerTQLProbesLimitRequest" type="params:setTriggerTQLProbesLimitRequest">
+<xs:annotation>
+<xs:documentation>Job Name, Tql Name, Probes Limit </xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="setTriggerTQLProbesLimitRequest">
+<xs:sequence>
+<xs:element name="jobName" type="xs:string"/>
+<xs:element name="tqlName" type="xs:string"/>
+<xs:element name="probesLimit" type="ucmdbtypes:strList"/>
+<xs:element name="cmdbContext" type="ucmdbtypes:CmdbContext"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getDomainsNamesRequest" type="params:getDomainsNamesRequest"/>
+<xs:complexType name="getDomainsNamesRequest">
+<xs:sequence>
+<xs:element name="CmdbContext" type="ucmdbtypes:CmdbContext"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getDomainsNamesResponse" type="params:getDomainsNamesResponse">
+<xs:annotation>
+<xs:documentation>Domains Names</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="getDomainsNamesResponse">
+<xs:sequence>
+<xs:element name="domainNames" type="ucmdbtypes:strList"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getDomainTypeRequest" type="params:getDomainTypeRequest">
+<xs:annotation>
+<xs:documentation>Domain Name</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="getDomainTypeRequest">
+<xs:sequence>
+<xs:element name="domainName" type="xs:string"/>
+<xs:element name="CmdbContext" type="ucmdbtypes:CmdbContext"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getDomainTypeResponse" type="params:getDomainTypeResponse">
+<xs:annotation>
+<xs:documentation>Domain Type</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="getDomainTypeResponse">
+<xs:sequence>
+<xs:element name="domainType" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getProbesNamesRequest" type="params:getProbesNamesRequest">
+<xs:annotation>
+<xs:documentation>Domain Name</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="getProbesNamesRequest">
+<xs:sequence>
+<xs:element name="domainName" type="xs:string"/>
+<xs:element name="CmdbContext" type="ucmdbtypes:CmdbContext"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getProbesNamesResponse" type="params:getProbesNamesResponse">
+<xs:annotation>
+<xs:documentation>Probes Names</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="getProbesNamesResponse">
+<xs:sequence>
+<xs:element name="probesNames" type="ucmdbtypes:strList"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getProbeIPsRequest" type="params:getProbeIPsRequest">
+<xs:annotation>
+<xs:documentation>Domain Name, Probe Name</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="getProbeIPsRequest">
+<xs:sequence>
+<xs:element name="domainName" type="xs:string"/>
+<xs:element name="probeName" type="xs:string"/>
+<xs:element name="CmdbContext" type="ucmdbtypes:CmdbContext"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getProbeIPsResponse" type="params:getProbeIPsResponse">
+<xs:annotation>
+<xs:documentation>Probe Data</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="getProbeIPsResponse">
+<xs:sequence>
+<xs:element name="probeIPs" type="discoverytypes:IPList"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getProbeScopeRequest" type="params:getProbeScopeRequest">
+<xs:annotation>
+<xs:documentation>Domain Name, Probe Name</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="getProbeScopeRequest">
+<xs:sequence>
+<xs:element name="domainName" type="xs:string"/>
+<xs:element name="probeName" type="xs:string"/>
+<xs:element name="CmdbContext" type="ucmdbtypes:CmdbContext"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getProbeScopeResponse" type="params:getProbeScopeResponse">
+<xs:annotation>
+<xs:documentation>Probe Scope</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="getProbeScopeResponse">
+<xs:sequence>
+<xs:element name="probeScope" type="discoverytypes:Scope"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="updateProbeScopeRequest" type="params:updateProbeScopeRequest">
+<xs:annotation>
+<xs:documentation>Probe Name, Probe Scope</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="updateProbeScopeRequest">
+<xs:sequence>
+<xs:element name="domainName" type="xs:string"/>
+<xs:element name="probeName" type="xs:string"/>
+<xs:element name="newScope" type="discoverytypes:Scope"/>
+<xs:element name="CmdbContext" type="ucmdbtypes:CmdbContext"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getJobTriggerTqlsRequest" type="params:getJobTriggerTqlsRequest">
+<xs:annotation>
+<xs:documentation>Job Name</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="getJobTriggerTqlsRequest">
+<xs:sequence>
+<xs:element name="jobName" type="xs:string"/>
+<xs:element name="CmdbContext" type="ucmdbtypes:CmdbContext"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getJobTriggerTqlsResponse" type="params:getJobTriggerTqlsResponse">
+<xs:annotation>
+<xs:documentation>Job Trigger Tqls</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="getJobTriggerTqlsResponse">
+<xs:sequence>
+<xs:element name="strList" type="ucmdbtypes:strList"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getCredentialsEntriesIDsRequest" type="params:getCredentialsEntriesIDsRequest">
+<xs:annotation>
+<xs:documentation>Job Name</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="getCredentialsEntriesIDsRequest">
+<xs:sequence>
+<xs:element name="domainName" type="xs:string"/>
+<xs:element name="protocolName" type="xs:string"/>
+<xs:element name="CmdbContext" type="ucmdbtypes:CmdbContext"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getCredentialsEntriesIDsResponse" type="params:getCredentialsEntriesIDsResponse">
+<xs:annotation>
+<xs:documentation>Credentials Entry IDs</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="getCredentialsEntriesIDsResponse">
+<xs:sequence>
+<xs:element name="credentialsEntryIDs" type="ucmdbtypes:strList"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getCredentialsEntryRequest" type="params:getCredentialsEntryRequest">
+<xs:annotation>
+<xs:documentation>Domain Name, Protocol Name, Credentials Entry ID</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="getCredentialsEntryRequest">
+<xs:sequence>
+<xs:element name="domainName" type="xs:string"/>
+<xs:element name="protocolName" type="xs:string"/>
+<xs:element name="credentialsEntryID" type="xs:string"/>
+<xs:element name="CmdbContext" type="ucmdbtypes:CmdbContext"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getCredentialsEntryResponse" type="params:getCredentialsEntryResponse">
+<xs:annotation>
+<xs:documentation>Credentials Entry Parameters</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="getCredentialsEntryResponse">
+<xs:sequence>
+<xs:element name="credentialsEntryParameters" type="ucmdbtypes:CIProperties"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="addCredentialsEntryRequest" type="params:addCredentialsEntryRequest">
+<xs:annotation>
+<xs:documentation>Domain Name, Protocol Name, Credentials Entry Parameters</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="addCredentialsEntryRequest">
+<xs:sequence>
+<xs:element name="domainName" type="xs:string"/>
+<xs:element name="protocolName" type="xs:string"/>
+<xs:element name="credentialsEntryParameters" type="ucmdbtypes:CIProperties"/>
+<xs:element name="CmdbContext" type="ucmdbtypes:CmdbContext"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="addCredentialsEntryResponse" type="params:addCredentialsEntryResponse">
+<xs:annotation>
+<xs:documentation>JobState</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="addCredentialsEntryResponse">
+<xs:sequence>
+<xs:element name="credentialsEntryID" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="updateCredentialsEntryRequest" type="params:updateCredentialsEntryRequest">
+<xs:annotation>
+<xs:documentation>Domain Name, Protocol Name, Credentials Entry ID</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="updateCredentialsEntryRequest">
+<xs:sequence>
+<xs:element name="domainName" type="xs:string"/>
+<xs:element name="protocolName" type="xs:string"/>
+<xs:element name="credentialsEntryID" type="xs:string"/>
+<xs:element name="credentialsEntryParameters" type="ucmdbtypes:CIProperties"/>
+<xs:element name="CmdbContext" type="ucmdbtypes:CmdbContext"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="removeCredentialsEntryRequest" type="params:removeCredentialsEntryRequest">
+<xs:annotation>
+<xs:documentation>Domain Name, Protocol Name, Credentials Entry ID</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="removeCredentialsEntryRequest">
+<xs:sequence>
+<xs:element name="domainName" type="xs:string"/>
+<xs:element name="protocolName" type="xs:string"/>
+<xs:element name="credentialsEntryID" type="xs:string"/>
+<xs:element name="CmdbContext" type="ucmdbtypes:CmdbContext"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="addTriggerCIRequest" type="params:addTriggerCIRequest">
+<xs:annotation>
+<xs:documentation>Job Name, CI ID</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="addTriggerCIRequest">
+<xs:sequence>
+<xs:element name="JobName" type="xs:string"/>
+<xs:element name="CIID" type="xs:string"/>
+<xs:element name="CmdbContext" type="ucmdbtypes:CmdbContext"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="removeTriggerCIRequest" type="params:addTriggerCIRequest">
+<xs:annotation>
+<xs:documentation>Job Name, CI ID</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="removeTriggerCIRequest">
+<xs:sequence>
+<xs:element name="JobName" type="xs:string"/>
+<xs:element name="CIID" type="xs:string"/>
+<xs:element name="CmdbContext" type="ucmdbtypes:CmdbContext"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="dispatchAdHocJobResopnse" type="params:dispatchAdHocJobResopnse">
+<xs:annotation>
+<xs:documentation>The OSHV result as string</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="dispatchAdHocJobResopnse">
+<xs:sequence>
+<xs:element name="OSHVResult" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="dispatchAdHocJobRequest" type="params:dispatchAdHocJobRequest">
+<xs:annotation>
+<xs:documentation>Job Name, CI ID, probe name</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="dispatchAdHocJobRequest">
+<xs:sequence>
+<xs:element name="JobName" type="xs:string"/>
+<xs:element name="CIID" type="xs:string"/>
+<xs:element name="ProbeName" type="xs:string"/>
+<xs:element name="Timeout" type="xs:long"/>
+<xs:element name="CmdbContext" type="ucmdbtypes:CmdbContext"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="isProbeConnectedRequest" type="params:isProbeConnectedRequest">
+<xs:annotation>
+<xs:documentation>Domain Name, Probe Name</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="isProbeConnectedRequest">
+<xs:sequence>
+<xs:element name="domainName" type="xs:string"/>
+<xs:element name="probeName" type="xs:string"/>
+<xs:element name="CmdbContext" type="ucmdbtypes:CmdbContext"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="isProbeConnectedResponce" type="params:isProbeConnectedResponce">
+<xs:annotation>
+<xs:documentation>Probe status</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="isProbeConnectedResponce">
+<xs:sequence>
+<xs:element name="isConnected" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="rediscoverCIsRequest" type="params:rediscoverCIsRequest">
+<xs:annotation>
+<xs:documentation>Locate the triggers that discovered the CIs and rerun them. (Pass CIs List)</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="rediscoverCIsRequest">
+<xs:sequence>
+<xs:element name="CmdbIDs" type="ucmdbtypes:strList"/>
+<xs:element name="CmdbContext" type="ucmdbtypes:CmdbContext"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="rediscoverCIsResponse" type="params:rediscoverCIsResponse">
+<xs:annotation>
+<xs:documentation>Returns whether CIs rediscovery succeeded.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="rediscoverCIsResponse">
+<xs:sequence>
+<xs:element name="isSucceed" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="rediscoverViewCIsRequest" type="params:rediscoverViewCIsRequest">
+<xs:annotation>
+<xs:documentation>Finds the triggers that populated the specified view and reruns them. (Pass View name)</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="rediscoverViewCIsRequest">
+<xs:sequence>
+<xs:element name="viewName" type="xs:string"/>
+<xs:element name="CmdbContext" type="ucmdbtypes:CmdbContext"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="rediscoverViewCIsResponse" type="params:rediscoverViewCIsResponse">
+<xs:annotation>
+<xs:documentation>Returns whether the probe succeeded.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="rediscoverViewCIsResponse">
+<xs:sequence>
+<xs:element name="isSucceed" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="checkViewDiscoveryProgressRequest" type="params:checkViewDiscoveryProgressRequest">
+<xs:annotation>
+<xs:documentation>Checks the progress of the discovery of the specified view. Pass View Name)</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="checkViewDiscoveryProgressRequest">
+<xs:sequence>
+<xs:element name="viewName" type="xs:string"/>
+<xs:element name="CmdbContext" type="ucmdbtypes:CmdbContext"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="checkViewDiscoveryProgressResponse" type="params:checkViewDiscoveryProgressResponse">
+<xs:annotation>
+<xs:documentation>The probe progress from 0-1.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="checkViewDiscoveryProgressResponse">
+<xs:sequence>
+<xs:element name="progress" type="xs:double"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="checkDiscoveryProgressRequest" type="params:checkDiscoveryProgressRequest">
+<xs:annotation>
+<xs:documentation>Checks the progress of the discovery of the specified CIs. (Pass CIs list)</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="checkDiscoveryProgressRequest">
+<xs:sequence>
+<xs:element name="CmdbIDs" type="ucmdbtypes:strList"/>
+<xs:element name="CmdbContext" type="ucmdbtypes:CmdbContext"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="checkDiscoveryProgressResponse" type="params:checkDiscoveryProgressResponse">
+<xs:annotation>
+<xs:documentation>The probe progress from 0-1.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="checkDiscoveryProgressResponse">
+<xs:sequence>
+<xs:element name="progress" type="xs:double"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

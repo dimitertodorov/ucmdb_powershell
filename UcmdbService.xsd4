@@ -1,0 +1,66 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:types="http://schemas.hp.com/ucmdb/1/types" xmlns:updateparams="http://schemas.hp.com/ucmdb/1/params/update" xmlns:updatetypes="http://schemas.hp.com/ucmdb/1/types/update" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://schemas.hp.com/ucmdb/1/params/update">
+<xs:annotation>
+<xs:documentation>
+		Update methods and return types definitions
+		</xs:documentation>
+</xs:annotation>
+<xs:import namespace="http://schemas.hp.com/ucmdb/1/types" schemaLocation="UcmdbService.xsd11"/>
+<xs:import namespace="http://schemas.hp.com/ucmdb/1/types/update" schemaLocation="UcmdbService.xsd6"/>
+<xs:complexType name="addCIsAndRelations">
+<xs:sequence>
+<xs:element name="cmdbContext" type="types:CmdbContext"/>
+<xs:element minOccurs="0" name="dataStore" type="xs:string"/>
+<xs:element default="true" minOccurs="0" name="updateExisting" nillable="true" type="xs:boolean"/>
+<xs:element name="CIsAndRelationsUpdates" type="updatetypes:CIsAndRelationsUpdates"/>
+<xs:element default="false" minOccurs="0" name="ignoreValidation" nillable="true" type="xs:boolean">
+<xs:annotation>
+<xs:documentation>If ignoreValidation is true, no check is performed before updating the uCMDB</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="CreatedIDsMap" type="updatetypes:ClientIDToCmdbID">
+<xs:annotation>
+<xs:documentation>
+            The map of submitted client IDs and the IDs of the corresponding CIs created in the UCMDB.
+        </xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="addCIsAndRelations" type="updateparams:addCIsAndRelations"/>
+<xs:complexType name="addCIsAndRelationsResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" ref="updateparams:CreatedIDsMap"/>
+<xs:element name="comments" type="types:ResComments"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="addCIsAndRelationsResponse" type="updateparams:addCIsAndRelationsResponse"/>
+<xs:complexType name="updateCIsAndRelations">
+<xs:sequence>
+<xs:element name="cmdbContext" type="types:CmdbContext"/>
+<xs:element minOccurs="0" name="dataStore" type="xs:string"/>
+<xs:element name="CIsAndRelationsUpdates" type="updatetypes:CIsAndRelationsUpdates"/>
+<xs:element default="false" minOccurs="0" name="ignoreValidation" nillable="true" type="xs:boolean">
+<xs:annotation>
+<xs:documentation>If ignoreValidation is true, the CIs are not validated before an add operation</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="updateCIsAndRelations" type="updateparams:updateCIsAndRelations"/>
+<xs:complexType name="updateCIsAndRelationsResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" ref="updateparams:CreatedIDsMap"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="updateCIsAndRelationsResponse" type="updateparams:updateCIsAndRelationsResponse"/>
+<xs:complexType name="deleteCIsAndRelations">
+<xs:sequence>
+<xs:element name="cmdbContext" type="types:CmdbContext"/>
+<xs:element minOccurs="0" name="dataStore" type="xs:string"/>
+<xs:element name="CIsAndRelationsUpdates" type="updatetypes:CIsAndRelationsUpdates"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="deleteCIsAndRelations" type="updateparams:deleteCIsAndRelations"/>
+<xs:complexType name="deleteCIsAndRelationsResponse"/>
+<xs:element name="deleteCIsAndRelationsResponse" type="updateparams:deleteCIsAndRelationsResponse"/>
+</xs:schema>

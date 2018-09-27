@@ -1,0 +1,30 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:querytypes="http://schemas.hp.com/ucmdb/1/types/query" xmlns:types="http://schemas.hp.com/ucmdb/1/types" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://schemas.hp.com/ucmdb/1/types/query">
+<xs:complexType name="CICountNode">
+<xs:sequence>
+<xs:element name="label"/>
+<xs:element name="amount" type="xs:integer"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="CICountNodes">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="CICountNode" type="querytypes:CICountNode"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="RelationCountNode">
+<xs:sequence>
+<xs:element name="label"/>
+<xs:element name="amount" type="xs:integer"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="RelationCountNodes">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="relationCountNode" type="querytypes:RelationCountNode"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="TopologyCountMap">
+<xs:sequence>
+<xs:element minOccurs="0" name="CICountNodes" type="querytypes:CICountNodes"/>
+<xs:element minOccurs="0" name="relationCountNodes" type="querytypes:RelationCountNodes"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

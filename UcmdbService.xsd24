@@ -1,0 +1,34 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:params="http://schemas.hp.com/ucmdb/ui/1/params" xmlns:types="http://schemas.hp.com/ucmdb/1/types" xmlns:uitypes="http://schemas.hp.com/ucmdb/ui/1/types" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://schemas.hp.com/ucmdb/ui/1/params">
+<xs:import namespace="http://schemas.hp.com/ucmdb/ui/1/types" schemaLocation="UcmdbService.xsd25"/>
+<xs:import namespace="http://schemas.hp.com/ucmdb/1/types" schemaLocation="UcmdbService.xsd11"/>
+<xs:element name="ClassModelQueryGetClassModelIconPathsRequest" type="params:ClassModelQueryGetClassModelIconPathsRequest">
+<xs:annotation>
+<xs:documentation>Specifies parameters for the ClassModelQueryGetClassModelIconPaths operation</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="ClassModelQueryGetClassModelIconPathsRequest">
+<xs:sequence>
+<xs:element name="cmdbContext" type="types:CmdbContext"/>
+<xs:element minOccurs="0" name="className" type="xs:string">
+<xs:annotation>
+<xs:documentation>Optional. If presnet, will return only image path only for specified class, otherwise will return for all classes.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="large" type="xs:boolean">
+<xs:annotation>
+<xs:documentation>True will return large images (32 pixels per side), False will return small images (16 pixels per side)</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ClassModelQueryGetClassModelIconPathsResponse" type="params:ClassModelQueryGetClassModelIconPathsResponse">
+<xs:annotation>
+<xs:documentation>Specifies values of the ClassModelQueryGetClassModelIconPaths operaiton response</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:complexType name="ClassModelQueryGetClassModelIconPathsResponse">
+<xs:sequence>
+<xs:element name="relativePaths" type="uitypes:ClassNameAndIcons"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

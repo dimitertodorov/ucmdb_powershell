@@ -1,0 +1,18 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:params="http://schemas.hp.com/ucmdb/management/1/params" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://schemas.hp.com/ucmdb/management/1/params">
+<xs:complexType name="addCustomerRequest">
+<xs:sequence>
+<xs:element name="CustomerID" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="addCustomerRequest" type="params:addCustomerRequest"/>
+<xs:complexType name="addCustomerResponse"/>
+<xs:element name="addCustomerResponse" type="params:addCustomerResponse"/>
+<xs:complexType name="removeCustomerRequest">
+<xs:sequence>
+<xs:element name="CustomerID" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="removeCustomerRequest" type="params:removeCustomerRequest"/>
+<xs:complexType name="removeCustomerResponse"/>
+<xs:element name="removeCustomerResponse" type="params:removeCustomerResponse"/>
+</xs:schema>

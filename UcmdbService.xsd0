@@ -1,0 +1,259 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:props="http://schemas.hp.com/ucmdb/1/types/props" xmlns:queryparams="http://schemas.hp.com/ucmdb/1/params/query" xmlns:querytypes="http://schemas.hp.com/ucmdb/1/types/query" xmlns:types="http://schemas.hp.com/ucmdb/1/types" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://schemas.hp.com/ucmdb/1/params/query">
+<xs:annotation>
+<xs:documentation>
+		Data query methods and return types definitions
+		</xs:documentation>
+</xs:annotation>
+<xs:import namespace="http://schemas.hp.com/ucmdb/1/types" schemaLocation="UcmdbService.xsd11"/>
+<xs:import namespace="http://schemas.hp.com/ucmdb/1/types/props" schemaLocation="UcmdbService.xsd2"/>
+<xs:import namespace="http://schemas.hp.com/ucmdb/1/types/query" schemaLocation="UcmdbService.xsd3"/>
+<xs:complexType name="getTopologyQueryResultCountByNameResponse">
+<xs:sequence>
+<xs:element name="topologyCountMap" type="querytypes:TopologyCountMap"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getTopologyQueryResultCountByNameResponse" type="queryparams:getTopologyQueryResultCountByNameResponse"/>
+<xs:element name="getTopologyQueryResultCountByName" type="queryparams:getTopologyQueryResultCountByName"/>
+<xs:complexType name="getTopologyQueryResultCountByName">
+<xs:sequence>
+<xs:element name="cmdbContext" type="types:CmdbContext"/>
+<xs:element name="queryName" type="xs:string"/>
+<xs:element default="true" minOccurs="0" name="countInvisible" nillable="true" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getTopologyQueryExistingResultByName">
+<xs:sequence>
+<xs:element name="cmdbContext" type="types:CmdbContext"/>
+<xs:element name="queryName" type="xs:string"/>
+<xs:element minOccurs="0" name="queryTypedProperties" type="props:TypedPropertiesCollection">
+<xs:annotation>
+<xs:documentation>
+            			A collection of sets of properties used to retrieve items of a specific Configuration Item or Relation Type.
+            		</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getTopologyQueryExistingResultByName" type="queryparams:getTopologyQueryExistingResultByName"/>
+<xs:complexType name="getTopologyQueryExistingResultByNameResponse">
+<xs:sequence>
+<xs:element name="topologyMap" type="types:TopologyMap"/>
+<xs:element name="chunkInfo" type="types:ChunkInfo"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getTopologyQueryExistingResultByNameResponse" type="queryparams:getTopologyQueryExistingResultByNameResponse"/>
+<xs:complexType name="executeTopologyQueryByName">
+<xs:sequence>
+<xs:element name="cmdbContext" type="types:CmdbContext"/>
+<xs:element name="queryName" type="xs:string"/>
+<xs:element minOccurs="0" name="queryTypedProperties" type="props:TypedPropertiesCollection">
+<xs:annotation>
+<xs:documentation>
+            			A collection of sets of properties used to retrieve items of a specific Configuration Item Type.
+            		</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="executeTopologyQueryByName" type="queryparams:executeTopologyQueryByName"/>
+<xs:complexType name="executeTopologyQueryByNameResponse">
+<xs:sequence>
+<xs:element name="topologyMap" type="types:TopologyMap"/>
+<xs:element name="chunkInfo" type="types:ChunkInfo"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="executeTopologyQueryByNameResponse" type="queryparams:executeTopologyQueryByNameResponse"/>
+<xs:complexType name="getCIsByType">
+<xs:sequence>
+<xs:element name="cmdbContext" type="types:CmdbContext"/>
+<xs:element name="type" type="xs:string"/>
+<xs:element minOccurs="0" name="properties" type="props:CustomProperties"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getCIsByType" type="queryparams:getCIsByType"/>
+<xs:complexType name="getCIsByTypeResponse">
+<xs:sequence>
+<xs:element name="CIs" type="types:CIs"/>
+<xs:element name="chunkInfo" type="types:ChunkInfo"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getCIsByTypeResponse" type="queryparams:getCIsByTypeResponse"/>
+<xs:complexType name="getFilteredCIsByType">
+<xs:sequence>
+<xs:element name="cmdbContext" type="types:CmdbContext"/>
+<xs:element name="type" type="xs:string"/>
+<xs:element minOccurs="0" name="properties" type="props:CustomProperties"/>
+<xs:element name="conditions" type="types:Conditions"/>
+<xs:element name="conditionsLogicalOperator">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value="OR"/>
+<xs:enumeration value="AND"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getFilteredCIsByType" type="queryparams:getFilteredCIsByType"/>
+<xs:complexType name="getFilteredCIsByTypeResponse">
+<xs:sequence>
+<xs:element name="CIs" type="types:CIs"/>
+<xs:element name="chunkInfo" type="types:ChunkInfo"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getFilteredCIsByTypeResponse" type="queryparams:getFilteredCIsByTypeResponse"/>
+<xs:complexType name="getCIsById">
+<xs:sequence>
+<xs:element name="cmdbContext" type="types:CmdbContext"/>
+<xs:element minOccurs="0" name="CIsTypedProperties" type="props:TypedPropertiesCollection"/>
+<xs:element name="IDs" type="types:IDs"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getCIsById" type="queryparams:getCIsById"/>
+<xs:complexType name="getCIsByIdResponse">
+<xs:sequence>
+<xs:element name="CIs" type="types:CIs"/>
+<xs:element name="chunkInfo" type="types:ChunkInfo"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getCIsByIdResponse" type="queryparams:getCIsByIdResponse"/>
+<xs:complexType name="getCIsByIdWithEnumValues">
+<xs:sequence>
+<xs:element name="cmdbContext" type="types:CmdbContext"/>
+<xs:element minOccurs="0" name="CIsTypedProperties" type="props:TypedPropertiesCollection"/>
+<xs:element name="IDs" type="types:IDs"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getCIsByIdWithEnumValues" type="queryparams:getCIsByIdWithEnumValues"/>
+<xs:complexType name="getCIsByIdWithEnumValuesResponse">
+<xs:sequence>
+<xs:element name="CIs" type="types:CIs"/>
+<xs:element name="chunkInfo" type="types:ChunkInfo"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getCIsByIdWithEnumValuesResponse" type="queryparams:getCIsByIdWithEnumValuesResponse"/>
+<xs:complexType name="pullTopologyMapChunks">
+<xs:sequence>
+<xs:element name="cmdbContext" type="types:CmdbContext"/>
+<xs:element ref="types:ChunkRequest"/>
+<xs:element minOccurs="0" name="queryTypedProperties" type="props:TypedPropertiesCollection">
+<xs:annotation>
+<xs:documentation>
+            			A collection of sets of properties used to retrieve items of a specific Configuration Item Type.
+            		</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="pullTopologyMapChunks" type="queryparams:pullTopologyMapChunks"/>
+<xs:complexType name="pullTopologyMapChunksResponse">
+<xs:sequence>
+<xs:element name="topologyMap" type="types:TopologyMap"/>
+<xs:element minOccurs="0" name="comments" type="types:ResComments"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="pullTopologyMapChunksResponse" type="queryparams:pullTopologyMapChunksResponse"/>
+<xs:complexType name="getQueryNameOfView">
+<xs:sequence>
+<xs:element name="cmdbContext" type="types:CmdbContext"/>
+<xs:element name="viewName" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getQueryNameOfView" type="queryparams:getQueryNameOfView"/>
+<xs:complexType name="getQueryNameOfViewResponse">
+<xs:sequence>
+<xs:element name="queryName" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getQueryNameOfViewResponse" type="queryparams:getQueryNameOfViewResponse"/>
+<xs:complexType name="executeTopologyQueryByNameWithParameters">
+<xs:sequence>
+<xs:element name="cmdbContext" type="types:CmdbContext"/>
+<xs:element name="queryName" type="xs:string"/>
+<xs:element maxOccurs="unbounded" name="parameterizedNodes" type="types:ParameterizedNode"/>
+<xs:element minOccurs="0" name="queryTypedProperties" type="props:TypedPropertiesCollection">
+<xs:annotation>
+<xs:documentation>
+            			A collection of sets of properties used to retrieve items of a specific Configuration Item Type.
+            		</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="executeTopologyQueryByNameWithParameters" type="queryparams:executeTopologyQueryByNameWithParameters"/>
+<xs:complexType name="executeTopologyQueryByNameWithParametersResponse">
+<xs:sequence>
+<xs:element name="topologyMap" type="types:TopologyMap"/>
+<xs:element name="chunkInfo" type="types:ChunkInfo"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="executeTopologyQueryByNameWithParametersResponse" type="queryparams:executeTopologyQueryByNameWithParametersResponse"/>
+<xs:complexType name="executeTopologyQueryWithParameters">
+<xs:sequence>
+<xs:element name="cmdbContext" type="types:CmdbContext"/>
+<xs:element name="queryXml" type="xs:string"/>
+<xs:element maxOccurs="unbounded" name="parameterizedNodes" type="types:ParameterizedNode"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="executeTopologyQueryWithParameters" type="queryparams:executeTopologyQueryWithParameters"/>
+<xs:complexType name="executeTopologyQueryWithParametersResponse">
+<xs:sequence>
+<xs:element name="topologyMap" type="types:TopologyMap"/>
+<xs:element name="chunkInfo" type="types:ChunkInfo"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="executeTopologyQueryWithParametersResponse" type="queryparams:executeTopologyQueryByNameWithParametersResponse"/>
+<xs:complexType name="getCINeighbours">
+<xs:sequence>
+<xs:element name="cmdbContext" type="types:CmdbContext"/>
+<xs:element name="ID" type="types:ID"/>
+<xs:element default="object" name="neighbourType" type="xs:string"/>
+<xs:element minOccurs="0" name="CIProperties" type="props:TypedPropertiesCollection"/>
+<xs:element minOccurs="0" name="relationProperties" type="props:TypedPropertiesCollection"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getCINeighbours" type="queryparams:getCINeighbours"/>
+<xs:complexType name="getCINeighboursResponse">
+<xs:sequence>
+<xs:element name="topology" type="types:Topology"/>
+<xs:element name="comments" type="types:ResComments"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getCINeighboursResponse" type="queryparams:getCINeighboursResponse"/>
+<xs:complexType name="releaseChunks">
+<xs:sequence>
+<xs:element name="cmdbContext" type="types:CmdbContext"/>
+<xs:element name="chunksKey" type="types:ChunkKey"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="releaseChunks" type="queryparams:releaseChunks"/>
+<xs:complexType name="releaseChunksResponse"/>
+<xs:element name="releaseChunksResponse" type="queryparams:releaseChunksResponse"/>
+<xs:complexType name="getRelationsById">
+<xs:sequence>
+<xs:element name="cmdbContext" type="types:CmdbContext"/>
+<xs:element minOccurs="0" name="RelationsTypedProperties" type="props:TypedPropertiesCollection">
+<xs:annotation>
+<xs:documentation>
+             		Properties whose values are to be returned with the returned relations
+             	</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="IDs" type="types:IDs">
+<xs:annotation>
+<xs:documentation>
+             		The IDs of the relations to be returned
+             	</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getRelationsById" type="queryparams:getRelationsById"/>
+<xs:complexType name="getRelationsByIdResponse">
+<xs:sequence>
+<xs:element name="Relations" type="types:Relations"/>
+<xs:element name="chunkInfo" type="types:ChunkInfo"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getRelationsByIdResponse" type="queryparams:getRelationsByIdResponse"/>
+</xs:schema>

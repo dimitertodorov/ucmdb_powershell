@@ -1,0 +1,204 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cmtypes="http://schemas.hp.com/ucmdb/1/types/classmodel" xmlns:types="http://schemas.hp.com/ucmdb/1/types" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://schemas.hp.com/ucmdb/1/types/classmodel">
+<xs:annotation>
+<xs:documentation>
+		Types used working with the class model
+		</xs:documentation>
+</xs:annotation>
+<xs:import namespace="http://schemas.hp.com/ucmdb/1/types" schemaLocation="UcmdbService.xsd11"/>
+<xs:complexType name="Qualifier">
+<xs:sequence>
+<xs:element name="name" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+					The name of the Qualifier
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element minOccurs="0" name="qualifierProps" type="cmtypes:QualifiersProperties">
+<xs:annotation>
+<xs:documentation>
+					Properties of a Qualifier. Most Qualifiers do not have properties.
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Qualifiers">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="qualifier" type="cmtypes:Qualifier"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Attribute">
+<xs:sequence>
+<xs:element name="name" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+					The name of the Attribute
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="attrType">
+<xs:annotation>
+<xs:documentation>
+					The data type of the Attribute
+					</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value="INTEGER"/>
+<xs:enumeration value="LONG"/>
+<xs:enumeration value="FLOAT"/>
+<xs:enumeration value="DOUBLE"/>
+<xs:enumeration value="INTEGER_LIST"/>
+<xs:enumeration value="STRING"/>
+<xs:enumeration value="STRING_LIST"/>
+<xs:enumeration value="BYTES"/>
+<xs:enumeration value="XML"/>
+<xs:enumeration value="BOOLEAN"/>
+<xs:enumeration value="DATE"/>
+<xs:enumeration value="ENUM"/>
+<xs:enumeration value="CMDB_LIST"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element minOccurs="0" name="attrTypeName" type="xs:string"/>
+<xs:element name="displayLabel" type="xs:string"/>
+<xs:element name="description" type="xs:string"/>
+<xs:element name="qualifiers" type="cmtypes:Qualifiers"/>
+<xs:element name="defaultValue" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="QualifiersProperties">
+<xs:sequence>
+<xs:element minOccurs="0" name="dateProps" type="types:DateProps"/>
+<xs:element minOccurs="0" name="doubleProps" type="types:DoubleProps"/>
+<xs:element minOccurs="0" name="floatProps" type="types:FloatProps"/>
+<xs:element minOccurs="0" name="intListProps" type="types:IntListProps"/>
+<xs:element minOccurs="0" name="intProps" type="types:IntProps"/>
+<xs:element minOccurs="0" name="strProps" type="types:StrProps"/>
+<xs:element minOccurs="0" name="strListProps" type="types:StrListProps"/>
+<xs:element minOccurs="0" name="longProps" type="types:LongProps"/>
+<xs:element minOccurs="0" name="bytesProps" type="types:BytesProps"/>
+<xs:element minOccurs="0" name="xmlProps" type="types:XmlProps"/>
+<xs:element minOccurs="0" name="booleanProps" type="types:BooleanProps"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="UcmdbClass">
+<xs:sequence>
+<xs:element name="name" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+					The class name is the used in code to indicate the type
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="classType">
+<xs:annotation>
+<xs:documentation>
+					CI or Relation
+					</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value="CI"/>
+<xs:enumeration value="RELATION"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="displayLabel" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+					Used for display in the user interface
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="description" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+					Free text
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="parentName" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+					The UcmdbClass.name of the class from which this type directly inherits
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element minOccurs="0" name="qualifiers" type="cmtypes:Qualifiers">
+<xs:annotation>
+<xs:documentation>
+					Flags that indicate characteristics of the configuration item type (CIT)
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element minOccurs="0" name="attributes" type="cmtypes:Attributes">
+<xs:annotation>
+<xs:documentation>
+					Declarations of the properties instances of this class have
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="UcmdbClassHierarchyNode">
+<xs:sequence>
+<xs:element name="classNames" type="cmtypes:ClassNames">
+<xs:annotation>
+<xs:documentation>
+					The names of the classes derived from the common parent class
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="classParentName" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+					The name of the parent class
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="UcmdbClassModelHierarchy">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" name="classHierarchyNode" type="cmtypes:UcmdbClassHierarchyNode">
+<xs:annotation>
+<xs:documentation>
+					A parent class and its child classes
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ClassNames">
+<xs:sequence>
+<xs:element name="className" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+					The UcmdbClass.name
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element minOccurs="0" name="displayName" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+					The UcmdbClass.displayLabel
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Attributes">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="attribute" type="cmtypes:Attribute">
+<xs:annotation>
+<xs:documentation>
+					A declaration of a property that instances of this class have
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="UcmdbClass" type="cmtypes:UcmdbClass"/>
+</xs:schema>

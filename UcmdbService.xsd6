@@ -1,0 +1,58 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:types="http://schemas.hp.com/ucmdb/1/types" xmlns:updatetypes="http://schemas.hp.com/ucmdb/1/types/update" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://schemas.hp.com/ucmdb/1/types/update">
+<xs:annotation>
+<xs:documentation>
+		Types for use in updating configuration items and relations.
+		</xs:documentation>
+</xs:annotation>
+<xs:import namespace="http://schemas.hp.com/ucmdb/1/types" schemaLocation="UcmdbService.xsd11"/>
+<xs:complexType name="CIsAndRelationsUpdates">
+<xs:sequence>
+<xs:element minOccurs="0" name="CIsForUpdate" type="types:CIs">
+<xs:annotation>
+<xs:documentation>
+					The collection of CI elements to update
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element minOccurs="0" name="relationsForUpdate" type="types:Relations">
+<xs:annotation>
+<xs:documentation>
+					The collection of relations to update
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element minOccurs="0" name="referencedCIs" type="types:CIs">
+<xs:annotation>
+<xs:documentation>
+					CIs used for resolving the identities of the CIs and Relations for update. The referenced CIs are not updated.
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element minOccurs="0" name="referencedRelations" type="types:Relations">
+<xs:annotation>
+<xs:documentation>
+					Relations used for resolving the identities of the CIs and Relations for update. The referenced relations are not updated.
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ClientIDToCmdbID">
+<xs:sequence>
+<xs:element name="clientID" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+					The temporary ID supplied by the client
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="cmdbID" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+					The real ID assigned by the UCMDB
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

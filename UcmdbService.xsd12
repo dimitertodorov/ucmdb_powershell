@@ -1,0 +1,50 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:classmodelparams="http://schemas.hp.com/ucmdb/1/params/classmodel" xmlns:classmodeltypes="http://schemas.hp.com/ucmdb/1/types/classmodel" xmlns:types="http://schemas.hp.com/ucmdb/1/types" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://schemas.hp.com/ucmdb/1/params/classmodel">
+<xs:annotation>
+<xs:documentation>
+		Class model query methods and return types definitions
+		</xs:documentation>
+</xs:annotation>
+<xs:import namespace="http://schemas.hp.com/ucmdb/1/types/classmodel" schemaLocation="UcmdbService.xsd13"/>
+<xs:import namespace="http://schemas.hp.com/ucmdb/1/types" schemaLocation="UcmdbService.xsd11"/>
+<xs:complexType name="getCmdbClassDefinition">
+<xs:sequence>
+<xs:element name="cmdbContext" type="types:CmdbContext"/>
+<xs:element name="className" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getCmdbClassDefinition" type="classmodelparams:getCmdbClassDefinition"/>
+<xs:complexType name="getCmdbClassDefinitionResponse">
+<xs:sequence>
+<xs:element ref="classmodeltypes:UcmdbClass"/>
+<xs:element name="comments" type="types:ResComments"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getCmdbClassDefinitionResponse" type="classmodelparams:getCmdbClassDefinitionResponse"/>
+<xs:complexType name="getAllClassesHierarchy">
+<xs:sequence>
+<xs:element name="cmdbContext" type="types:CmdbContext"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getAllClassesHierarchy" type="classmodelparams:getAllClassesHierarchy"/>
+<xs:complexType name="getAllClassesHierarchyResponse">
+<xs:sequence>
+<xs:element name="classesHierarchy" type="classmodeltypes:UcmdbClassModelHierarchy"/>
+<xs:element name="comments" type="types:ResComments"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getAllClassesHierarchyResponse" type="classmodelparams:getAllClassesHierarchyResponse"/>
+<xs:complexType name="getClassAncestors">
+<xs:sequence>
+<xs:element name="cmdbContext" type="types:CmdbContext"/>
+<xs:element name="className" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getClassAncestors" type="classmodelparams:getClassAncestors"/>
+<xs:complexType name="getClassAncestorsResponse">
+<xs:sequence>
+<xs:element name="classHierarchy" type="classmodeltypes:UcmdbClassModelHierarchy"/>
+<xs:element name="comments" type="types:ResComments"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getClassAncestorsResponse" type="classmodelparams:getClassAncestorsResponse"/>
+</xs:schema>

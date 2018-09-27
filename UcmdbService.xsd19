@@ -1,0 +1,59 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:historytypes="http://schemas.hp.com/ucmdb/1/types/history" xmlns:types="http://schemas.hp.com/ucmdb/1/types" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://schemas.hp.com/ucmdb/1/types/history">
+<xs:annotation>
+<xs:documentation> 
+			Type for reporting changes in CIs.
+		</xs:documentation>
+</xs:annotation>
+<xs:import namespace="http://schemas.hp.com/ucmdb/1/types" schemaLocation="UcmdbService.xsd11"/>
+<xs:complexType name="ChangedDataInfo">
+<xs:sequence>
+<xs:element name="changedIDs" type="types:IDs">
+<xs:annotation>
+<xs:documentation> 
+				The list of changed IDs, not including the root
+				</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="rootID" type="types:ID">
+<xs:annotation>
+<xs:documentation> 
+				The ID of the CI that triggers the check
+				</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="changeType">
+<xs:annotation>
+<xs:documentation>
+					Indicates where the changes occurred
+				</xs:documentation>
+</xs:annotation>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value="NO_CHANGE"/>
+<xs:enumeration value="ROOT_CHANGED">
+<xs:annotation>
+<xs:documentation> 
+							ROOT_CHANGED: The trigger CI has changed. No other CI that was checked changed.
+							</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="RELATED_OBJECT_CHANGED">
+<xs:annotation>
+<xs:documentation> 
+							RELATED_OBJECT_CHANGED: At least one CI related to the trigger has changed, but the trigger CI did not change.
+							</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="ROOT_AND_OBJECT_CHANGED">
+<xs:annotation>
+<xs:documentation>
+								ROOT_AND_OBJECT_CHANGED: The trigger CI and at least one other related CI changed
+							</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

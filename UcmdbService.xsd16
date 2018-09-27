@@ -1,0 +1,27 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ucmdbparams="http://schemas.hp.com/ucmdb/1/params/ucmdb" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://schemas.hp.com/ucmdb/1/params/ucmdb">
+<xs:annotation>
+<xs:documentation>
+            The exception type
+        </xs:documentation>
+</xs:annotation>
+<xs:element name="ucmdbFault">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="msg" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+                            The error message
+                        </xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="stacktrace" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+                            The stack trace
+                        </xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:schema>

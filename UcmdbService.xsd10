@@ -1,0 +1,234 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:impacttypes="http://schemas.hp.com/ucmdb/1/types/impact" xmlns:types="http://schemas.hp.com/ucmdb/1/types" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://schemas.hp.com/ucmdb/1/types/impact">
+<xs:annotation>
+<xs:documentation>
+		Types used in impact analysis
+		</xs:documentation>
+</xs:annotation>
+<xs:import namespace="http://schemas.hp.com/ucmdb/1/types" schemaLocation="UcmdbService.xsd11"/>
+<xs:complexType name="ImpactedCI">
+<xs:complexContent>
+<xs:extension base="types:ShallowCI"/>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="ImpactedCIs">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="impactedCI" type="impacttypes:ImpactedCI"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ImpactStep">
+<xs:sequence>
+<xs:element name="triggerCI" type="impacttypes:ImpactedCIs">
+<xs:annotation>
+<xs:documentation>The CI that was the source of this trail</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="ruleName" type="xs:string">
+<xs:annotation>
+<xs:documentation>The rule that identified this impact</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="impactedCI" type="impacttypes:ImpactedCIs">
+<xs:annotation>
+<xs:documentation>The CIs that are impacted by the triggers via the rule</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ImpactPath">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="ImpactStep" type="impacttypes:ImpactStep">
+<xs:annotation>
+<xs:documentation>
+					A step in an impact graph
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ImpactPaths">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="ImpactPath" type="impacttypes:ImpactPath">
+<xs:annotation>
+<xs:documentation>
+					A collection of steps in an impact graph
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ImpactRule">
+<xs:sequence>
+<xs:element name="ruleName" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+					The name of the rule
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element minOccurs="0" name="description" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+					The description of the rule
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="queryName" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+					The name of the query on which the rule is based
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="isActive" type="xs:boolean">
+<xs:annotation>
+<xs:documentation>
+					Indicates if the rule is currently active
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ImpactRules">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="impactRule" type="impacttypes:ImpactRule">
+<xs:annotation>
+<xs:documentation>
+					A rule that specifies the effect of a change
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ImpactRuleNames">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" name="impactRuleName" type="impacttypes:ImpactRuleName">
+<xs:annotation>
+<xs:documentation>
+					The name of an impact rule
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Identifier">
+<xs:sequence>
+<xs:element name="key" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ImpactTopology">
+<xs:sequence>
+<xs:element name="CIs" type="types:CIs">
+<xs:annotation>
+<xs:documentation>
+					A collection of configuration items
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="impactRelations" type="impacttypes:ImpactRelations">
+<xs:annotation>
+<xs:documentation>
+					A collecton of links between two items specifying that a change in one impacts the other
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ImpactRelation">
+<xs:sequence>
+<xs:element name="ID" type="types:ID">
+<xs:annotation>
+<xs:documentation>
+					The ID of the link
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="type" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+					The type of the relation
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="end1ID" type="types:ID">
+<xs:annotation>
+<xs:documentation>
+					The CI ID of the item at the start of the link
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="end2ID" type="types:ID">
+<xs:annotation>
+<xs:documentation>
+					The CI ID of the target item of the link
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="rule" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+					The name of the impact rule that is activated by this relation
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="action" type="xs:string">
+<xs:annotation>
+<xs:documentation>
+					The action that triggers the impact rule
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ImpactRelations">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" name="impactRelation" type="impacttypes:ImpactRelation">
+<xs:annotation>
+<xs:documentation>
+					A link between two items specifying that a change in one impacts the other
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Actions">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" name="action" type="impacttypes:Action">
+<xs:annotation>
+<xs:documentation>
+					A trigger that initiates calculation of a correlation rule
+					</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Action"/>
+<xs:element name="ImpactRuleNames">
+<xs:annotation>
+<xs:documentation>
+			A collection of names of impact rules
+			</xs:documentation>
+</xs:annotation>
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" name="impactRuleName" type="impacttypes:ImpactRuleName">
+<xs:annotation>
+<xs:documentation>
+						The name of an impact rule
+						</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="ImpactRuleName">
+<xs:simpleContent>
+<xs:annotation>
+<xs:documentation>
+				The name
+				</xs:documentation>
+</xs:annotation>
+<xs:extension base="xs:string"/>
+</xs:simpleContent>
+</xs:complexType>
+<xs:element name="ImpactPathTopology" type="impacttypes:ImpactTopology"/>
+</xs:schema>
