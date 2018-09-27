@@ -48,12 +48,12 @@ for ($i=1; $i -le $ChunksInfo.numberOfChunks; $i++)
 {
     $ChunksRequest.Envelope.Body.pullTopologyMapChunks.ChunkRequest.chunkNumber = "$i"
     [xml]$Response = Invoke-WebRequest -Uri $endpoint -Method Post -ContentType "application/soap+xml;charset=UTF-8;action=`"pullChunkResult`"" -Credential $UcmdbUser -Body $ChunksRequest.OuterXml
-
-    foreach($node_ci in $Response.Envelope.Body.pullTopologyMapChunksResponse.topologyMap.CINodes.CINode.CIs.CI){
-        if($OutDocument.DocumentElement -eq $null){
-            $OutDocument.AppendChild($OutDocument.ImportNode($node_ci,$true))
-        }else{
-            $OutDocument.DocumentElement.AppendChild($OutDocument.ImportNode($node_ci,$true))
-        }
-    }
+    Write-Host "Pulled in $($Response.Envelope.Body.pullTopologyMapChunksResponse.topologyMap.CINodes.CINode.CIs.CI.Count) CIS for Chunk $i"
+    # foreach($node_ci in $Response.Envelope.Body.pullTopologyMapChunksResponse.topologyMap.CINodes.CINode.CIs.CI){
+    #     if($OutDocument.DocumentElement -eq $null){
+    #         $OutDocument.AppendChild($OutDocument.ImportNode($node_ci,$true))
+    #     }else{
+    #         $OutDocument.DocumentElement.AppendChild($OutDocument.ImportNode($node_ci,$true))
+    #     }
+    # }
 }
